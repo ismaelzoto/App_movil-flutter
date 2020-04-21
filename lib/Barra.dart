@@ -44,16 +44,16 @@ Widget build(BuildContext context) {
     bottomNavigationBar: BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
+          icon: Icon(Icons.map),
+          title: Text('Mapas'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          title: Text('Business'),
+          icon: Icon(Icons.supervised_user_circle),
+          title: Text('Contactos'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          title: Text('School'),
+          icon: Icon(Icons.message),
+          title: Text('Mensajes'),
         ),
       ],
       currentIndex: _selectedIndex,
