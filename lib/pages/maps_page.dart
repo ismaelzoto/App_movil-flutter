@@ -4,12 +4,12 @@ import 'dart:async';
 import 'package:toast/toast.dart';
 import 'package:geolocator/geolocator.dart';
 
-class Maps extends StatefulWidget{
+class Mapspage extends StatefulWidget{
   @override
-  _MapsState createState() => _MapsState();
+  _MapspageState createState() => _MapspageState();
 }
 
-class _MapsState extends State<Maps>{
+class _MapspageState extends State<Mapspage>{
   MapType _defaultMapType = MapType.normal;
   Completer<GoogleMapController> _controller = Completer();
   static LatLng _initialPosition;
@@ -37,10 +37,21 @@ class _MapsState extends State<Maps>{
   }
 
   void _changeMapType() {
-    setState(() {
-      _defaultMapType = _defaultMapType == MapType.normal ? MapType.satellite : MapType.normal;
-    });
-  }
+      setState(() {
+      // normal, hibrido, terreno, satellite
+        if ( _defaultMapType == MapType.normal ) {
+          _defaultMapType = MapType.hybrid;
+        } else if ( _defaultMapType == MapType.hybrid ) {
+          _defaultMapType = MapType.terrain;
+        } else if ( _defaultMapType == MapType.terrain ) {
+          _defaultMapType = MapType.satellite;
+        } else {
+          _defaultMapType = MapType.normal;
+        }
+            //setState((){});
+           //_defaultMapType = _defaultMapType == MapType.normal ? MapType.satellite : MapType.normal;
+      });
+    }
   
   @override
   Widget build(BuildContext context) {
@@ -75,18 +86,26 @@ class _MapsState extends State<Maps>{
                   ),
                 ),
             Container(
-              margin: EdgeInsets.only(top: 80, right: 10),
+              margin: EdgeInsets.only(top: 410, right: 20),
               alignment: Alignment.topRight,
               child: Column(
                 children: <Widget>[
                   FloatingActionButton(
                       child: Icon(Icons.layers),
                       elevation: 5,
-                      backgroundColor: Colors.cyan[200],
+                      backgroundColor: Colors.deepPurple,
                       onPressed: () {
                         _changeMapType();
                         Toast.show('LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}', context, duration: Toast.LENGTH_LONG);
-                        print('Cambiando el tipo de Mapa');
+                       if ( _defaultMapType == MapType.normal ) {
+                       print('Cambio a Tipo de Mapa > Normal');
+                        } else if ( _defaultMapType == MapType.hybrid ) {
+                          print('Cambio a tipo de Mapa > Hibrido');
+                            } else if ( _defaultMapType == MapType.terrain ) {
+                              print('Cambio a tipo de Mapa > Terreno');
+                                 } else {
+                                     print('Cambio a tipo de Mapa > Satelite');
+                                                    }
                       }),
                 ],
               ),
