@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:itca/pages/maps_page.dart';
 import 'package:itca/pages/tabEvent.dart';
 import 'package:itca/pages/tabHome.dart';
 import 'package:itca/pages/tabInbox.dart';
@@ -7,8 +8,9 @@ class BarPage extends StatefulWidget{
    BarPage({Key key}) : super(key: key);
   
   @override
-  _BarPageState createState() => _BarPageState();
+  State<StatefulWidget> createState() => _BarPageState();
 }
+//Tab bar
 class _BarPageState extends State<BarPage> with SingleTickerProviderStateMixin{
   TabController _tabController;
 
@@ -59,3 +61,39 @@ class _BarPageState extends State<BarPage> with SingleTickerProviderStateMixin{
     );
   }
 }
+
+
+// BAR BotomNavigatorBar
+//class _BarPageState extends State<BarPage> {
+
+//  int _tabindex=0;
+//       @override
+//       Widget build(BuildContext context) {
+//         final _kTabPages = <Widget>[
+//             new TabHome(),
+//             new TabInbox(),
+//             new TabEvent(),
+//           ];
+//     final _kTabs = <BottomNavigationBarItem>[
+//     BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+//     BottomNavigationBarItem(icon: Icon(Icons.inbox), title: Text('Mensajes')),
+//     BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text('Configuración')),
+//     ];
+
+// assert(_kTabPages.length == _kTabs.length);
+//   final bottomNavBar = BottomNavigationBar(
+//       items: _kTabs,
+//       currentIndex: _tabindex,
+//       type: BottomNavigationBarType.fixed,
+//       onTap: (int index){
+//         setState(() {
+//           _tabindex = index;
+//         });
+//       },
+//   ); 
+//       return Scaffold(
+//        body: _kTabPages[_tabindex],
+//        bottomNavigationBar: bottomNavBar,
+//     );
+//   }
+// }

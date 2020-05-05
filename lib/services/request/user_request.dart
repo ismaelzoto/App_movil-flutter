@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:itca/models/user.dart';
 import 'package:itca/data/query/user_ctr.dart';
 

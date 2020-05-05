@@ -1,15 +1,19 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:itca/data/query/user_ctr.dart';
+import 'package:flutter/rendering.dart';
 import 'package:itca/models/user.dart';
 import 'package:itca/services/response/user_response.dart';
 
 class TabHome extends StatefulWidget {
+   TabHome ({Key key}): super(key: key);
   @override
   _UserPageState createState() => new _UserPageState();
 }
 
 class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUserCallBack,DeleteUserCallBack {
+
   BuildContext _ctx;
+  bool _showPass = true;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -60,13 +64,15 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
 
     SingleChildScrollView dataBody() {
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
+      scrollDirection: Axis.vertical, 
+        child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+          child: DataTable(
         columns: [
-          DataColumn(label: Text('Id')),
-          DataColumn(label: Text('Username')),
-          DataColumn(label: Text('Password')),
-          DataColumn(label: Text('Eliminar')),
+          DataColumn(label: Text('id')),
+          DataColumn(label: Text('user')),
+          DataColumn(label: Text('passwd')),
+          DataColumn(label: Text('delete')),
         ],
         rows:
             listUser // Loops through dataColumnText, each iteration assigning the value to element
@@ -86,6 +92,7 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
                       )),
                 )
                 .toList(),
+       ),
       ),
     );
   }
@@ -95,8 +102,8 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
     _ctx = context;
     var loginBtn = new RaisedButton(
       onPressed: _submit,
-      child: new Text("Save"),
-      color: Colors.blueGrey,
+      child: new Text("Iniciar Sesion"),
+      color: Colors.green[300],
     );
     var userForm = new Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -110,14 +117,26 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
                   onSaved: (val) => _username = val,
-                  decoration: new InputDecoration(labelText: "Username"),
+                  decoration: new InputDecoration(labelText: "Usuario"),
                 ),
               ),
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
                   onSaved: (val) => _password = val,
-                  decoration: new InputDecoration(labelText: "Password"),
+                  obscureText: this._showPass,
+                  maxLength: 8,
+                  decoration: new InputDecoration(labelText: "Contraseña",
+                  helperText: 'No más de 8 carácteres',
+                  suffixIcon: GestureDetector(
+                    onTap: (){
+                     setState (() {
+                   _showPass = !_showPass;
+                             });
+                             },
+                       child: Icon(_showPass ? Icons.visibility: Icons.visibility_off),
+                  ),
+                 ),
                 ),
               )
             ],
@@ -126,19 +145,16 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
         loginBtn
       ],
     );
-
     return new Scaffold(
-      appBar: new AppBar(
-       // title: new Text("User Page"),
-      ),
       key: scaffoldKey,
       body: new Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           verticalDirection: VerticalDirection.down,
           children: <Widget>[
             userForm,
             Expanded(
+              //child: Text('Registrate!'),
               child : dataBody(),
             ),
           ],
@@ -161,13 +177,13 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
     if(user > 0){
       // TODO: implement onLoginSuccess
       _responseGet.doGet();
-      _showSnackBar("data has been saved successfully");
+      _showSnackBar("los datos se guardaron exitosamente!");
       setState(() {
         _isLoading = false;
       });
     }else{
       // TODO: implement onLoginSuccess
-      _showSnackBar("Failed, please check data");
+      _showSnackBar("Fallo!, por favor revisa los datos");
       setState(() {
         _isLoading = false;
       });
@@ -211,13 +227,13 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
     if(user > 0){
       _responseGet.doGet();
       // TODO: implement onLoginSuccess
-      _showSnackBar("data has been delete successfully");
+      _showSnackBar("los datos se borraron exitosamente!");
       setState(() {
         _isLoading = false;
       });
     }else{
       // TODO: implement onLoginSuccess
-      _showSnackBar("Failed, please check data");
+      _showSnackBar("Fallo!, por favor revisa los datos");
       setState(() {
         _isLoading = false;
       });
@@ -225,10 +241,6 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
     
   }
 }
-
-
-
-
   // This widget is the root of your application.
 //   @override
 //   Widget build(BuildContext context) {

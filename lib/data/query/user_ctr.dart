@@ -9,6 +9,7 @@ DatabaseHelper con = new DatabaseHelper();
   Future<int> saveUser(User user) async {
     var dbClient = await con.db;
     int res = await dbClient.insert("User", user.toMap());
+    print('[DBHelper] almacena_Usuario: con Éxito | $user');
     return res;
   }
 
@@ -16,6 +17,7 @@ DatabaseHelper con = new DatabaseHelper();
   Future<int> deleteUser(int user) async {
     var dbClient = await con.db;
     int res = await dbClient.rawDelete('DELETE FROM User WHERE id = ?', [user]);
+    print('[DBHelper] Elimina_Usuario: con Éxito | $user');
     return res;
   }
 
@@ -26,7 +28,6 @@ DatabaseHelper con = new DatabaseHelper();
     if (res.length > 0) {
       return new User.fromMap(res.first);
     }
-
     return null;
   }
 
@@ -36,7 +37,6 @@ DatabaseHelper con = new DatabaseHelper();
     
     List<User> list =
         res.isNotEmpty ? res.map((c) => User.fromMap(c)).toList() : null;
-
     return list;
   }
 }
