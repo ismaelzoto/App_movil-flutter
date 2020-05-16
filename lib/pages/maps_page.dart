@@ -56,10 +56,10 @@ class _MapspageState extends State<Mapspage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //appBar: AppBar(
-          //title: Text('LunchTime'),
-          //centerTitle: true,
-        //),
+        appBar: AppBar(
+          title: Text('LunchTime'),
+          centerTitle: true,
+               ),
         body: _initialPosition == null ? Container(
           child: Center(
             child: Text(

@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home' : (BuildContext context) => HomePage(),
-        'mapa' : (BuildContext context) => Mapspage()
+        'mapa' : (BuildContext context) => Mapspage(),
       },
       theme: ThemeData(
         primaryColor: Colors.deepPurple

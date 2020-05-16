@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itca/pages/maps_page.dart';
 
 class TabEvent extends StatelessWidget {
   // This widget is the root of your application.
@@ -7,18 +8,21 @@ class TabEvent extends StatelessWidget {
     return new ListView(
       children: <Widget>[
         ListTile(
-          leading: Icon(Icons.map),
-          title: Text('Mapa'),
+          leading: Icon(Icons.videocam),
+          title: Text('Video'),
         ),
         ListTile(
           leading: Icon(Icons.photo_album),
           title: Text('Album'),
+          onTap: ()=> {},
         ),
         ListTile(
-          leading: Icon(Icons.phone),
-          title: Text('Telefono'),
+          leading: Icon(Icons.layers),
+          title: Text('Mapas'),
+          onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage())),
         ),
       ],
     );
   }
 }
+

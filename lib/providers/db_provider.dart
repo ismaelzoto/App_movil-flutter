@@ -1,13 +1,9 @@
 import 'dart:io';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-
 import '../models/usuario.dart';
 export '../models/usuario.dart';
-// import 'package:itca/src/models/usuario.dart';
-// export 'package:itca/src/models/usuario.dart';
 
 class DBProvider {
 
@@ -69,7 +65,7 @@ class DBProvider {
   nuevoUser( Usuario nuevo ) async {
 
     final db  = await database;
-    final res = await db.insert('User',  nuevo.toJson() );
+    final res = await db.insert('User',  nuevo.toJson());
     return res;
   }
 

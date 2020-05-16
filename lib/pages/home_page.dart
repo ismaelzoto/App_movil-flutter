@@ -49,6 +49,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Center(
           child: BarPage(),
+           //child: BotonFab(),
         ),
         drawer: Drawer(
           child: drawerItems,
@@ -61,10 +62,10 @@ class _NewPage extends MaterialPageRoute<Null> {
   _NewPage(int id)
       : super(builder: (BuildContext context) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text('Mapa'),
-              elevation: 1.0,
-            ),
+            // appBar: AppBar(
+            //   title: Text('Mapa'),
+             // elevation: 1.0,
+            //),
             body: Center(
               child: Mapspage(),
             ),

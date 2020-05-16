@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:itca/pages/maps_page.dart';
+import 'package:itca/pages/maps_page.dart';
 import 'package:itca/pages/tabEvent.dart';
 import 'package:itca/pages/tabHome.dart';
 import 'package:itca/pages/tabInbox.dart';
@@ -42,6 +42,34 @@ class _BarPageState extends State<BarPage> with SingleTickerProviderStateMixin{
     super.dispose();
   }
 
+void _newTaskModalBottomSheet(context){
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc){
+          return Container(
+            child: new Wrap(
+            children: <Widget>[
+          new ListTile(
+            leading: new Icon(Icons.music_note),
+            title: new Text('Music'),
+            onTap: () => {}          
+          ),
+          new ListTile(
+            leading: new Icon(Icons.videocam),
+            title: new Text('Video'),
+            onTap: () => {},          
+          ),
+          new ListTile(
+            leading: new Icon(Icons.layers),
+            title: new Text('Mapas'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage())),          
+          ),
+            ],
+          ),
+          );
+      }
+    );
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +78,15 @@ class _BarPageState extends State<BarPage> with SingleTickerProviderStateMixin{
         children: _kTabPages,
         controller: _tabController,
       ),
-      bottomNavigationBar: Material(
+       floatingActionButton: FloatingActionButton(
+         backgroundColor: Colors.deepPurple,
+         foregroundColor: Colors.lightBlueAccent,
+        onPressed: (){ //Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage()));
+         _newTaskModalBottomSheet(context);
+        },
+        child: new Icon(Icons.add),
+      ),
+      bottomNavigationBar: Material(        
         color: Colors.deepPurple,
         child: TabBar(
           indicatorColor: Colors.lightBlueAccent,

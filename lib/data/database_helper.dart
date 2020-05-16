@@ -7,7 +7,7 @@ import 'package:path/path.dart';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-// import 'package:itca/models/user.dart';
+// import 'package:itca/models/usuario.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper.internal();

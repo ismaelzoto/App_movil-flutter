@@ -4,7 +4,7 @@ class Usuario {
     String apPaterno;
     String apMaterno;
     String edad;
-    int telefono;
+    String telefono;
     String direccion;
 
     Usuario({
@@ -27,6 +27,24 @@ class Usuario {
         direccion: json["direccion"],
     );
 
+//     Usuario.fromMap(dynamic obj) {
+//     this.id = obj['id'];
+//     this.nombre= obj['nombre'];
+//     this.apPaterno = obj['paterno'];
+//   }
+
+//   String get nom => nombre;
+//   String get paterno => apPaterno;
+//   int get _id => id;
+
+//   Map<String, dynamic> toMap() {
+//     var map = new Map<String, dynamic>();
+//     map["id"] = _id;
+//     map["nombre"] = nombre;
+//     map["Apellido paterno"] = apPaterno;
+//     return map;
+//   }
+// }
     Map<String, dynamic> toJson() => {
         "id": id,
         "nombre": nombre,
