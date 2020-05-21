@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 import 'package:itca/models/user.dart';
 import 'package:itca/services/response/user_response.dart';
 
@@ -61,47 +61,47 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
     ));
   }
 
-    SingleChildScrollView dataBody() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical, 
-        child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-          child: DataTable(
-        columns: [
-          DataColumn(label: Text('id')),
-          DataColumn(label: Text('user')),
-          DataColumn(label: Text('passwd')),
-          DataColumn(label: Text('delete')),
-        ],
-        rows:
-            listUser // Loops through dataColumnText, each iteration assigning the value to element
-                .map(
-                  ((element) => DataRow(
-                        cells: <DataCell>[
-                          DataCell(Text(element.id.toString())), //Extracting from Map element the value
-                          DataCell(Text(element.username)),
-                          DataCell(Text(element.password)),
-                          DataCell( new IconButton(
-                            icon: const Icon(Icons.delete_forever,
-                                color: const Color(0xFF167F67)),
-                            onPressed: () => _delete(element.id),
-                            alignment: Alignment.centerLeft,
-                          )),
-                        ],
-                      )),
-                )
-                .toList(),
-       ),
-      ),
-    );
-  }
+  //   SingleChildScrollView dataBody() {
+  //   return SingleChildScrollView(
+  //     scrollDirection: Axis.vertical, 
+  //       child: SingleChildScrollView(
+  //           scrollDirection: Axis.horizontal,
+  //         child: DataTable(
+  //       columns: [
+  //         DataColumn(label: Text('id')),
+  //         DataColumn(label: Text('user')),
+  //         DataColumn(label: Text('passwd')),
+  //         DataColumn(label: Text('delete')),
+  //       ],
+  //       rows:
+  //           listUser // Loops through dataColumnText, each iteration assigning the value to element
+  //               .map(
+  //                 ((element) => DataRow(
+  //                       cells: <DataCell>[
+  //                         DataCell(Text(element.id.toString())), //Extracting from Map element the value
+  //                         DataCell(Text(element.username)),
+  //                         DataCell(Text(element.password)),
+  //                         DataCell( new IconButton(
+  //                           icon: const Icon(Icons.delete_forever,
+  //                               color: const Color(0xFF167F67)),
+  //                           onPressed: () => _delete(element.id),
+  //                           alignment: Alignment.centerLeft,
+  //                         )),
+  //                       ],
+  //                     )),
+  //               )
+  //               .toList(),
+  //      ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     _ctx = context;
     var loginBtn = new RaisedButton(
       onPressed: _submit,
-      child: new Text("Iniciar Sesion"),
+      child: new Text("Guardar"),
       color: Colors.green[300],
     );
     var userForm = new Column(
@@ -153,8 +153,8 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
           children: <Widget>[
             userForm,
             Expanded(
-              //child: Text('Registrate!'),
-              child : dataBody(),
+              child: Text('Registrate!'),
+              //child : dataBody(),
             ),
           ],
         ),
@@ -240,7 +240,8 @@ class _UserPageState extends State<TabHome> implements CreateUserCallBack,GetUse
     
   }
 }
-  // This widget is the root of your application.
+
+  ////This widget is the root of your application.
 //   @override
 //   Widget build(BuildContext context) {
 //     return new Center(

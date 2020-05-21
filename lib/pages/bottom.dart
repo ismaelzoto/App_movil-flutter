@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itca/pages/maps_page.dart';
+import 'package:itca/pages/tab_page.dart';
 
 class BotonFab extends StatefulWidget {
   final Function() onPressed;
@@ -84,7 +85,7 @@ class _BotonFabState extends State<BotonFab>
   Widget image() {
     return Container(
       child: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => TabPage()));},
         tooltip: 'Image',
         child: Icon(Icons.image),
       ),

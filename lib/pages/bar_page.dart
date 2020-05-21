@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:itca/pages/maps_page.dart';
 import 'package:itca/pages/tabEvent.dart';
 import 'package:itca/pages/tabHome.dart';
-import 'package:itca/pages/tabInbox.dart';
+import 'package:itca/pages/tab_page.dart';
 
 class BarPage extends StatefulWidget{
    BarPage({Key key}) : super(key: key);
@@ -16,14 +16,14 @@ class _BarPageState extends State<BarPage> with SingleTickerProviderStateMixin{
 
         final _kTabPages = <Widget>[
             new TabHome(),
-            new TabInbox(),
+            new TabPage(),
             new TabEvent(),
             
           ],
 
    _kTabs = <Tab>[
     Tab(icon: Icon(Icons.home), text: 'Home'),
-    Tab(icon: Icon(Icons.inbox), text: 'Mensajes'),
+    Tab(icon: Icon(Icons.add_box), text: 'Ordenar'),
     Tab(icon: Icon(Icons.settings), text: 'Configuracion'),
   ];
 
@@ -42,34 +42,35 @@ class _BarPageState extends State<BarPage> with SingleTickerProviderStateMixin{
     super.dispose();
   }
 
-void _newTaskModalBottomSheet(context){
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc){
-          return Container(
-            child: new Wrap(
-            children: <Widget>[
-          new ListTile(
-            leading: new Icon(Icons.music_note),
-            title: new Text('Music'),
-            onTap: () => {}          
-          ),
-          new ListTile(
-            leading: new Icon(Icons.videocam),
-            title: new Text('Video'),
-            onTap: () => {},          
-          ),
-          new ListTile(
-            leading: new Icon(Icons.layers),
-            title: new Text('Mapas'),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage())),          
-          ),
-            ],
-          ),
-          );
-      }
-    );
-}
+// void _nuevoBottom(context){
+//     showModalBottomSheet(
+//       context: context,
+//       builder: (BuildContext bc){
+//           return Container(
+//             child: new Wrap(
+//             children: <Widget>[
+//           new ListTile(
+//             leading: new Icon(Icons.music_note),
+//             title: new Text('Music'),
+//             onTap: () => {}          
+//           ),
+//           new ListTile(
+//             leading: new Icon(Icons.create),
+//             title: new Text('Registrar'),
+//             onTap: ()  => Navigator.push(context, MaterialPageRoute(builder: (context) => TabPage())),          
+//           ),
+//           new ListTile(
+//             leading: new Icon(Icons.layers),
+//             title: new Text('Mapas'),
+//             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage())),          
+//           ),
+//             ],
+//           ),
+//           );
+//       }
+//     );
+// }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,21 +78,23 @@ void _newTaskModalBottomSheet(context){
       body: TabBarView(
         children: _kTabPages,
         controller: _tabController,
-      ),
-       floatingActionButton: FloatingActionButton(
-         backgroundColor: Colors.deepPurple,
-         foregroundColor: Colors.lightBlueAccent,
-        onPressed: (){ //Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage()));
-         _newTaskModalBottomSheet(context);
-        },
-        child: new Icon(Icons.add),
-      ),
+      ),  
+    //  ESTE ES UN BOTON FLOTANTE    
+    // floatingActionButton: FloatingActionButton(
+    //      backgroundColor: Colors.deepPurple,
+    //      foregroundColor: Colors.lightBlueAccent,
+    //     onPressed: (){ //Navigator.push(context, MaterialPageRoute(builder: (context) => Mapspage()));
+    //      _nuevoBottom(context);
+    //     },
+    //     child: new Icon(Icons.add),
+    //  ),
       bottomNavigationBar: Material(        
         color: Colors.deepPurple,
         child: TabBar(
           indicatorColor: Colors.lightBlueAccent,
           tabs: _kTabs,
           controller: _tabController,
+          
         ),
       ),
     );

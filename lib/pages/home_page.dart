@@ -4,8 +4,8 @@ import 'package:itca/pages/maps_page.dart';
 
 class HomePage extends StatelessWidget {
     const HomePage({Key key}) : super(key: key);
-
-@override
+    
+    @override
   Widget build(BuildContext context) {
     final drawerHeader = UserAccountsDrawerHeader(
       accountName: Text('User Name'),
@@ -25,6 +25,16 @@ class HomePage extends StatelessWidget {
         )
       ],
     );
+     ListTile(
+              title: Text(
+                'Log Out',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/login');
+                Navigator.pop(context);
+              },
+     );
     final drawerItems = ListView(
       children: <Widget>[
         drawerHeader,
@@ -41,7 +51,7 @@ class HomePage extends StatelessWidget {
           onTap: () => {},
         ),
       ],
-    );
+    );     
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
@@ -49,7 +59,6 @@ class HomePage extends StatelessWidget {
         ),
         body: Center(
           child: BarPage(),
-           //child: BotonFab(),
         ),
         drawer: Drawer(
           child: drawerItems,
@@ -78,43 +87,43 @@ class _NewPage extends MaterialPageRoute<Null> {
 
 
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       title: Text('LunchTime'),
-  //     ),
-  //     drawer: Drawer(
-  //       child: ListView(
-  //         children: <Widget>[
-  //           Container(
-  //             child: DrawerHeader(
-  //               child: Column(
-  //                 children: <Widget>[
-  //                   Icon(
-  //                     Icons.account_circle,
-  //                     size: 70.0,
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //           ListTile(
-  //             title: Text(
-  //               'Log Out',
-  //               style: TextStyle(fontSize: 20.0),
-  //             ),
-  //             onTap: () {
-  //               Navigator.pushReplacementNamed(context, '/login');
-  //               Navigator.pop(context);
-  //             },
-  //           ),
-  //         ],
-  //       ),
-  //     ),
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('LunchTime'),
+//       ),
+//       drawer: Drawer(
+//         child: ListView(
+//           children: <Widget>[
+//             Container(
+//               child: DrawerHeader(
+//                 child: Column(
+//                   children: <Widget>[
+//                     Icon(
+//                       Icons.account_circle,
+//                       size: 70.0,
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             ListTile(
+//               title: Text(
+//                 'Log Out',
+//                 style: TextStyle(fontSize: 20.0),
+//               ),
+//               onTap: () {
+//                 Navigator.pushReplacementNamed(context, '/login');
+//                 Navigator.pop(context);
+//               },
+//             ),
+//           ],
+//         ),
+//       ),
 //        body: Container(
 //          child: Center(
-//            child: Barra(),
+//            child: BarPage(),
 //        ),
 //       ),
 //     );
